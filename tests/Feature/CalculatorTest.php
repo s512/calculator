@@ -24,7 +24,7 @@ class CalculatorTest extends TestCase
     {
         $a = rand(-1000, 1000);
         $b = rand(-1000, 1000);
-        $operator = $this->getRandomOperator();
+        $operator = $this->getRandomOperator($b);
 
         $response = $this->post(route('calculator.calculate', [
             'input_a' => $a,
@@ -81,11 +81,17 @@ class CalculatorTest extends TestCase
     }
 
     /**
-     * Get a random operator value
+     * Get a random operator value, excluding division if input b is zero
      */
-    private function getRandomOperator(): string
+    private function getRandomOperator(?float $b = null): string
     {
         $operators = Operator::cases();
+
+        // Let's try to avoid flaky tests :'(
+        if ($b === 0) {
+            $operators = array_filter($operators, fn ($operator) => $operator->value !== '/');
+        }
+
         return $operators[array_rand($operators)]->value;
     }
 }

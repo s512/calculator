@@ -13,7 +13,7 @@ class DivideOperatorTest extends TestCase
     {
         $operator = new DivideOperator();
         $a = rand(0, 100);
-        $b = rand(0, 100);
+        $b = rand(1, 100);
 
         $this->assertEquals($a / $b, $operator->execute($a, $b));
     }
