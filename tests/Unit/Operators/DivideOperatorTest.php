@@ -17,4 +17,15 @@ class DivideOperatorTest extends TestCase
 
         $this->assertEquals($a / $b, $operator->execute($a, $b));
     }
+
+    public function test_cannot_divide_by_0(): void
+    {
+        $operator = new DivideOperator();
+        $a = rand(0, 100);
+        $b = 0;
+
+        $this->expectException(\DivisionByZeroError::class);
+
+        $operator->execute($a, $b);
+    }
 }

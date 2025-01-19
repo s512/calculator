@@ -15,12 +15,19 @@ class CalculateRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules = [
             'input_a' => 'required|numeric',
             'input_b' => 'required|numeric',
             'operator' => [
                 Rule::enum(Operator::class)
             ]
         ];
+
+        // Ensure we're not dividing by 0
+        if ($this->operator === '/') {
+            $rules['input_b'] .= '|not_in:0';
+        }
+
+        return $rules;
     }
 }

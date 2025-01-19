@@ -58,6 +58,28 @@ class CalculatorTest extends TestCase
         $response->assertInvalid();
     }
 
+    public function test_cannot_divide_by_0(): void
+    {
+        $response = $this->post(route('calculator.calculate', [
+            'input_a' => rand(-1000, 1000),
+            'input_b' => 0,
+            'operator' => '/'
+        ]));
+
+        $response->assertInvalid();
+    }
+
+    public function test_can_multiply_by_0(): void
+    {
+        $response = $this->post(route('calculator.calculate', [
+            'input_a' => rand(-1000, 1000),
+            'input_b' => 0,
+            'operator' => '*'
+        ]));
+
+        $response->assertJson(['answer' => 0]);
+    }
+
     /**
      * Get a random operator value
      */
