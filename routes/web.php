@@ -9,6 +9,6 @@ Route::get('/', function () {
 
 Route::get('/calculator', [CalculatorController::class, 'show'])->name('calculator');
 
-Route::group(['prefix' => 'api'], function() {
+Route::group(['prefix' => 'api'], function () {
     Route::post('/calculator', [CalculatorController::class, 'answer'])->name('calculator.calculate');
 });
