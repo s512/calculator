@@ -17,6 +17,9 @@ enum Operator: string
     case SUBTRACT = '-';
     case DIVIDE = '/';
 
+    /**
+     * Get the operator class that corresponds to the symbol given
+     */
     public function operatorInstance(): OperatorInterface
     {
         return match($this) {

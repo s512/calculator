@@ -19,6 +19,9 @@ class CalculatorController extends Controller
         return view('calculator');
     }
 
+    /**
+     * Get the answer and return as JSON
+     */
     public function answer(CalculateRequest $request): \Illuminate\Http\JsonResponse
     {
         $operator = Operator::from($request->operator)->operatorInstance();
