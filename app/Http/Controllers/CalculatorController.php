@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Enums\Operator;
+use App\Services\Calculator;
+use Illuminate\Http\Request;
+
 class CalculatorController extends Controller
 {
     /**
@@ -13,5 +17,14 @@ class CalculatorController extends Controller
     public function show(): \Illuminate\Contracts\View\View
     {
         return view('calculator');
+    }
+
+    public function answer(Request $request): \Illuminate\Http\JsonResponse
+    {
+        $operator = Operator::from($request->operator)->operatorInstance();
+        $calculator = new Calculator($operator);
+        $answer = $calculator->calculate((float)$request->a, (float)$request->b);
+
+        return response()->json(['answer' => $answer]);
     }
 }
