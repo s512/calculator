@@ -23,7 +23,7 @@ class CalculatorController extends Controller
     {
         $operator = Operator::from($request->operator)->operatorInstance();
         $calculator = new Calculator($operator);
-        $answer = $calculator->calculate((float)$request->a, (float)$request->b);
+        $answer = $calculator->calculate((float)$request->input_a, (float)$request->input_b);
 
         return response()->json(['answer' => $answer]);
     }

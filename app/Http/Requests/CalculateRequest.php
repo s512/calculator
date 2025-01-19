@@ -16,8 +16,8 @@ class CalculateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'a' => 'required|numeric',
-            'b' => 'required|numeric',
+            'input_a' => 'required|numeric',
+            'input_b' => 'required|numeric',
             'operator' => [
                 Rule::enum(Operator::class)
             ]

@@ -27,8 +27,8 @@ class CalculatorTest extends TestCase
         $operator = $this->getRandomOperator();
 
         $response = $this->post(route('calculator.calculate', [
-            'a' => $a,
-            'b' => $b,
+            'input_a' => $a,
+            'input_b' => $b,
             'operator' => $operator
         ]));
 
@@ -39,8 +39,8 @@ class CalculatorTest extends TestCase
     public function test_cannot_use_unaccepted_operators(): void
     {
         $response = $this->post(route('calculator.calculate', [
-            'a' => rand(-1000, 1000),
-            'b' => rand(-1000, 1000),
+            'input_a' => rand(-1000, 1000),
+            'input_b' => rand(-1000, 1000),
             'operator' => 'j'
         ]));
 
@@ -50,8 +50,8 @@ class CalculatorTest extends TestCase
     public function test_cannot_use_non_numeric_values(): void
     {
         $response = $this->post(route('calculator.calculate', [
-            'a' => $this->faker()->word(),
-            'b' => $this->faker()->word(),
+            'input_a' => $this->faker()->word(),
+            'input_b' => $this->faker()->word(),
             'operator' => $this->getRandomOperator()
         ]));
 
