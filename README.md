@@ -2,7 +2,7 @@
 
 This is a simple calculator app using [the Laravel framework](https://laravel.com).
 
-The main branch currently has just two commits: framework install and Laravel Pint.
+The main branch currently has just two main commits: framework install and Laravel Pint.
 
 See [this Pull Request](https://github.com/s512/calculator/pull/1) for the addition of the calculator app.
 
@@ -13,5 +13,5 @@ See [this Pull Request](https://github.com/s512/calculator/pull/1) for the addit
 4. Generate an app key: `php artisan key:generate`
 5. Launch with: `php artisan serve`
 
-# Testing
+## Testing
 Run `php artisan test` to run the suite.
