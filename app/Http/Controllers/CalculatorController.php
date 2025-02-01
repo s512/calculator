@@ -22,10 +22,11 @@ class CalculatorController extends Controller
     /**
      * Get the answer and return as JSON
      */
-    public function answer(CalculateRequest $request): \Illuminate\Http\JsonResponse
+    public function answer(CalculateRequest $request, Calculator $calculator): \Illuminate\Http\JsonResponse
     {
-        $operator = Operator::from($request->operator)->operatorInstance();
-        $calculator = new Calculator($operator);
+        $calculator->setOperator(
+            Operator::from($request->operator)->operatorInstance()
+        );
         $answer = $calculator->calculate((float)$request->input_a, (float)$request->input_b);
 
         return response()->json(['answer' => $answer]);

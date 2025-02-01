@@ -10,7 +10,7 @@ class Calculator
 {
     private OperatorInterface $operator;
 
-    public function __construct(OperatorInterface $operator)
+    public function setOperator(OperatorInterface $operator): void
     {
         $this->operator = $operator;
     }
@@ -20,6 +20,10 @@ class Calculator
      */
     public function calculate(float $a, float $b): float
     {
+        if (!isset($this->operator)) {
+            throw new \Exception('An operator must be set first');
+        }
+
         return $this->operator->execute($a, $b);
     }
 }

@@ -12,7 +12,8 @@ class CalculatorTest extends TestCase
 {
     public function test_calculator_calculates_with_given_operator(): void
     {
-        $calculator = new Calculator(new AddOperator());
+        $calculator = new Calculator();
+        $calculator->setOperator(new AddOperator());
         $a = rand(0, 100);
         $b = rand(0, 100);
 
