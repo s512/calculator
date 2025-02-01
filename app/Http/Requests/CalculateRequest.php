@@ -23,11 +23,6 @@ class CalculateRequest extends FormRequest
             ]
         ];
 
-        // Ensure we're not dividing by 0
-        if ($this->operator === '/') {
-            $rules['input_b'] .= '|not_in:0';
-        }
-
         return $rules;
     }
 }

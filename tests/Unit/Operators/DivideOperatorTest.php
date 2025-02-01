@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Operators;
 
-use App\Services\Operators\DivideOperator;
+use DivisionByZeroError;
 use PHPUnit\Framework\TestCase;
+use App\Services\Operators\DivideOperator;
 
 class DivideOperatorTest extends TestCase
 {
@@ -24,7 +25,7 @@ class DivideOperatorTest extends TestCase
         $a = rand(0, 100);
         $b = 0;
 
-        $this->expectException(\DivisionByZeroError::class);
+        $this->expectException(DivisionByZeroError::class);
 
         $operator->execute($a, $b);
     }

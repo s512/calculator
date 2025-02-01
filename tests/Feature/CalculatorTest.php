@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Feature;
 
 use App\Enums\Operator;
+use DivisionByZeroError;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
@@ -60,13 +61,14 @@ class CalculatorTest extends TestCase
 
     public function test_cannot_divide_by_0(): void
     {
+        $this->expectException(DivisionByZeroError::class);
         $response = $this->post(route('calculator.calculate', [
             'input_a' => rand(-1000, 1000),
             'input_b' => 0,
             'operator' => '/'
         ]));
 
-        $response->assertInvalid();
+        $response->assertServerError()->assertJson(['message' => 'Division by 0 not possible']);
     }
 
     public function test_can_multiply_by_0(): void
